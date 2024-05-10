@@ -1,23 +1,24 @@
 const express = require("express");
-const receptionistController = require("../controllers/receptionistController");
+const patientController = require("../controllers/patientController");
 const authController = require("./../controllers/authController");
 const authorizeMiddleware = require("./../utils/authorize");
 
 const router = express.Router();
 
 router
-  .route("/createUser")
-  .post(
-    authController.protect,
-    authorizeMiddleware.authorize("Receptionist"),
-    receptionistController.createUser
-  );
-router
-  .route("/getAllUsers")
+  .route("/getPatientData/:id")
   .get(
     authController.protect,
-    authorizeMiddleware.authorize("Receptionist"),
-    receptionistController.getAllUsers
+    authorizeMiddleware.authorize("Patient"),
+    patientController.getPatientData
+  );
+
+router
+  .route("/downloadPatientData/:id")
+  .get(
+    authController.protect,
+    authorizeMiddleware.authorize("Patient"),
+    patientController.downloadPatientData
   );
 
 module.exports = router;

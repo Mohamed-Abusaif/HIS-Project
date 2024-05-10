@@ -8,7 +8,6 @@ const AdminUser = require("./../models/AdminModel");
 const ReceptionistUser = require("./../models/ReceptionistModel");
 
 const catchAsync = require("../utils/catchAsync");
-const AppError = require("./../utils/appError");
 //for login functionality for all users
 
 //From the client send username - password - role (via buttons login as doctor,patient,admin or reciptionist)
@@ -17,11 +16,11 @@ exports.login = catchAsync(async (req, res, next) => {
 
   //1) Check if email and password exist
   if (!username || !password || !role) {
-    return next(
-      new AppError("Please provide username and password and role!", 400)
-    );
+    res.status(400).json({
+      status: "fail",
+      message: "Please provide username and password and role!",
+    });
   }
-
   //2) Check if user exist and password is correct
   let user = undefined;
   if (role === "Patient") {
@@ -30,21 +29,31 @@ exports.login = catchAsync(async (req, res, next) => {
     );
     console.log(user);
     if (!user || !(await user.correctPassword(password, user.password))) {
-      return next(new AppError("Incorrect username or password", 401));
+      res.status(401).json({
+        status: "fail",
+        message: "Incorrect username or password",
+      });
     }
   }
+
   if (role === "Doctor") {
     user = await DoctorUser.findOne({ username: username }).select("+password");
     console.log(user);
     if (!user || !(await user.correctPassword(password, user.password))) {
-      return next(new AppError("Incorrect username or password", 401));
+      res.status(401).json({
+        status: "fail",
+        message: "Incorrect username or password",
+      });
     }
   }
   if (role === "Admin") {
     user = await AdminUser.findOne({ username: username }).select("+password");
     console.log(user);
     if (!user || !(await user.correctPassword(password, user.password))) {
-      return next(new AppError("Incorrect username or password", 401));
+      res.status(401).json({
+        status: "fail",
+        message: "Incorrect username or password",
+      });
     }
   }
   if (role === "Receptionist") {
@@ -53,15 +62,12 @@ exports.login = catchAsync(async (req, res, next) => {
     );
     console.log(user);
     if (!user || !(await user.correctPassword(password, user.password))) {
-      return next(new AppError("Incorrect username or password", 401));
+      res.status(401).json({
+        status: "fail",
+        message: "Incorrect username or password",
+      });
     }
   }
-
-  // const user = await User.findOne({ username: username }).select("+password");
-  // console.log(user);
-  // if (!user || !(await user.correctPassword(password, user.password))) {
-  //   return next(new AppError("Incorrect username or password", 401));
-  // }
 
   //3) If everything is ok, Send the token to client
   //creating the token:
@@ -85,10 +91,13 @@ exports.protect = catchAsync(async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   }
   if (!token) {
-    return next(
-      new AppError("Your are not logged in! Please login to get access!", 401)
-    );
+    res.status(401).json({
+      status: "fail",
+      message:
+        "Your are not logged in! or You are not allowed to access this Route! Please login with your correct role to get access!",
+    });
   }
+
   //2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
@@ -112,17 +121,19 @@ exports.protect = catchAsync(async (req, res, next) => {
     currentUser = receptionist;
   }
   if (!currentUser) {
-    return next(
-      new AppError("The user belonging to this token does no longer exist!")
-    );
-  }
-  //4) Check if user changed password after the token was issued
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next(
-      new AppError("User recently changed password! Please log in again.", 401)
-    );
+    res.status(401).json({
+      status: "fail",
+      message: "The user belonging to this token does no longer exist!",
+    });
   }
 
+  //4) Check if user changed password after the token was issued
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    res.status(401).json({
+      status: "fail",
+      message: "User recently changed password! Please log in again.",
+    });
+  }
   //next() Grant Access To Protected Route
   req.user = currentUser;
   next();

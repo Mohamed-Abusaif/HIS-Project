@@ -1,13 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
-const User = require("./models/UserModel");
-const RadType = require("./models/RadiologyTypeModel");
-const Pharmacy = require("./models/PharmacyModel");
+const multer = require("multer");
+
 const receptionistRouter = require("./routes/receptionistRoutes");
+const patientRouter = require("./routes/patientRoutes");
+const RadTypeModel = require("./models/RadiologyTypeModel");
 const authRouter = require("./routes/authRoutes");
-// const AppError = require('./utils/appError');
-// const globalErrorHandler = require("./controllers/errorController");
-// const tourRouter = require("./routes/tourRoutes");
 
 const app = express();
 
@@ -24,9 +22,20 @@ app.use((req, res, next) => {
   // console.log(req.headers);
   next();
 });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); // Set the destination directory
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Use the original file name
+  },
+});
+
+const upload = multer({ storage: storage });
 
 // 2) Routes
 app.use("/", receptionistRouter);
+app.use("/", patientRouter);
 app.use("/", authRouter);
 
 // app.post("/createPharmacy", async (req, res, next) => {
@@ -40,19 +49,15 @@ app.use("/", authRouter);
 //   });
 // });
 
-// app.post("/createRadType", async (req, res, next) => {
-//   const newRadType = await RadType.create(req.body);
+app.post("/createRadType", async (req, res, next) => {
+  const newRadType = await RadTypeModel.create(req.body);
 
-//   res.status(201).json({
-//     status: "success",
-//     data: {
-//       radType: newRadType,
-//     },
-//   });
-// });
-
-// app.all("*", (req, res, next) => {
-//   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
-// });
+  res.status(201).json({
+    status: "success",
+    data: {
+      radType: newRadType,
+    },
+  });
+});
 
 module.exports = app;

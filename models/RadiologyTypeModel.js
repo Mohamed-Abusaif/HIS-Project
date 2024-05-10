@@ -15,5 +15,5 @@ const radiologyTypeSchema = new mongoose.Schema({
   price: Number,
 });
 
-const RadType = mongoose.model("Medicine", radiologyTypeSchema);
+const RadType = mongoose.model("RadType", radiologyTypeSchema);
 module.exports = RadType;

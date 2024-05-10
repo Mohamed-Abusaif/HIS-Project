@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const { randomBytes } = require("crypto");
+const DoctorUser = require("./DoctorModel");
 
 // Define base User schema with discriminator key as an enum
 const patientSchema = new mongoose.Schema({
@@ -67,20 +68,32 @@ const patientSchema = new mongoose.Schema({
       "Please Choose another MRN, Just Try to Create The User Again and It will be handled directly!",
     ],
   },
+  patientDoctors: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "DoctorUser",
+    },
+  ],
   //medical history field will be an image or a pdf file
   medicalHistory: String,
-  medicines: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Medicine",
-  },
-  labResults: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "LabResults",
-  },
-  radResults: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "RadResults",
-  },
+  medicines: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Medicine",
+    },
+  ],
+  labResults: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LabResults",
+    },
+  ],
+  radResults: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "RadResults",
+    },
+  ],
 });
 
 patientSchema.pre("save", async function (next) {

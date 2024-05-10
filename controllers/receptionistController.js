@@ -1,5 +1,4 @@
-const User = require("../models/UserModel");
-const AppError = require("../utils/appError");
+// const User = require("../models/UserModel");
 const catchAsync = require("../utils/catchAsync");
 
 const PatientUser = require("./../models/PatientModel");
@@ -42,8 +41,12 @@ exports.createUser = catchAsync(async (req, res, next) => {
     searchUser.inPatientCollection ||
     searchUser.inReceptionistCollection
   ) {
-    return next(new AppError("This username is already exists!", 400));
+    res.status(401).json({
+      status: "fail",
+      message: "This username is already exists!",
+    });
   }
+
   let newUser = undefined;
 
   if (req.body.role === "Patient") {
@@ -56,6 +59,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
       gender: req.body.gender,
       dateOfBirth: req.body.dateOfBirth,
       role: req.body.role,
+      patientDoctors: req.body.patientDoctors,
       MRN: generateMRN(),
     });
   }
@@ -96,19 +100,6 @@ exports.createUser = catchAsync(async (req, res, next) => {
       role: req.body.role,
     });
   }
-
-  // newUser = await PatientUser.create({
-  //   name: req.body.name,
-  //   username: req.body.username,
-  //   password: req.body.password,
-  //   passwordConfirm: req.body.passwordConfirm,
-  //   contactInfo: req.body.contactInfo,
-  //   gender: req.body.gender,
-  //   dateOfBirth: req.body.dateOfBirth,
-  //   role: req.body.role,
-  //   specialization: req.body.specialization,
-  //   MRN: req.body.MRN, //tell the client side to generate a random number with 9 numbers for the MRN
-  // });
 
   res.status(202).json({
     status: "success",
