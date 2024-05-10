@@ -2,6 +2,13 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 // Define base User schema with discriminator key as an enum
+
+const doctorAvailabilitySchema = new mongoose.Schema({
+  time: { type: String, required: true },
+  clinicNumber: { type: String, required: true },
+  floorInHospital: { type: String, required: true },
+});
+
 const doctorSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name!"] },
   username: {
@@ -60,6 +67,16 @@ const doctorSchema = new mongoose.Schema({
   specialization: {
     type: String,
     required: [true, "Please provide Doctor Specialization!"],
+  },
+  doctorPatients: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "PatientUser",
+    },
+  ],
+  doctorAvailabilityTime: {
+    type: [doctorAvailabilitySchema],
+    required: [true, "Please provide doctor availability information!"],
   },
 });
 

@@ -4,6 +4,7 @@ const multer = require("multer");
 
 const receptionistRouter = require("./routes/receptionistRoutes");
 const patientRouter = require("./routes/patientRoutes");
+const doctorRouter = require("./routes/doctorRoutes");
 const RadTypeModel = require("./models/RadiologyTypeModel");
 const authRouter = require("./routes/authRoutes");
 
@@ -36,6 +37,7 @@ const upload = multer({ storage: storage });
 // 2) Routes
 app.use("/", receptionistRouter);
 app.use("/", patientRouter);
+app.use("/", doctorRouter);
 app.use("/", authRouter);
 
 // app.post("/createPharmacy", async (req, res, next) => {
