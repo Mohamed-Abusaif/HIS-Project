@@ -23,9 +23,6 @@ const patientSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  //you don't have to confirm password because the receptionist is responisble for the registration of users
-  //you can put it to the reciptionist (it does not matter)
-  //just a mechanism for the reciptionist to be sure of the integrity of data
   passwordConfirm: {
     type: String,
     required: [true, "Please confirm your password!"],
@@ -53,7 +50,7 @@ const patientSchema = new mongoose.Schema({
   role: {
     type: String,
     required: [true, "Please provide your role in the system!"],
-    enum: ["Patient"], // Enum specifying allowed values
+    enum: ["Patient"],
     default: "Patient", //it is the most generated user based on the bussiness in the hospital
   },
   passwordChangedAt: Date,
@@ -62,7 +59,6 @@ const patientSchema = new mongoose.Schema({
   //Patients Fields
   MRN: {
     type: String,
-    required: [true, "Please provide MRN!"],
     unique: [
       true,
       "Please Choose another MRN, Just Try to Create The User Again and It will be handled directly!",
@@ -74,8 +70,6 @@ const patientSchema = new mongoose.Schema({
       ref: "DoctorUser",
     },
   ],
-  //medical history field will be an image or a pdf file
-  medicalHistory: String,
   medicines: [
     {
       type: mongoose.Schema.Types.ObjectId,

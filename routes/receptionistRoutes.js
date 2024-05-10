@@ -11,6 +11,7 @@ router
   .post(
     authController.protect,
     authorizeMiddleware.authorize("Receptionist"),
+    receptionistController.uploadUserPhoto,
     receptionistController.createUser
   );
 router

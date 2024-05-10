@@ -3,7 +3,7 @@ const validator = require("validator");
 
 const RadResultsSchema = new mongoose.Schema({
   testResults: {
-    //will be an image or a pdf file
+    //will be an image
     type: String,
   },
   createdAt: {

@@ -1,25 +1,30 @@
-// const User = require("../models/UserModel");
-const catchAsync = require("../utils/catchAsync");
+const multer = require("multer");
+const path = require("path");
 
 const PatientUser = require("./../models/PatientModel");
 const DoctorUser = require("./../models/DoctorModel");
 const AdminUser = require("./../models/AdminModel");
 const ReceptionistUser = require("./../models/ReceptionistModel");
 const generateMRN = require("./../utils/generateMRN");
-//this is for creating users which is the job of the receptionist only
-//user can not create account by himself
+const catchAsync = require("../utils/catchAsync");
 
-//from the client side, the client have to send the unique required fields
-//in the request body (role + the unique required fields of the role specified)
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "UsersPhotos"); // Directory where files will be stored
+  },
+  filename: (req, file, cb) => {
+    const username = req.body.username; // Get the username from request body
+    const ext = path.extname(file.originalname); // Get the file extension
+    cb(null, `${username}${ext}`); // Set the filename as username + extension
+  },
+});
 
-//specialization field with the doctor role
-//MRN field with the patient role
+// Multer upload configuration
+const upload = multer({ storage: storage });
+exports.uploadUserPhoto = upload.single("photo"); // Assuming your file input name is "photo"
+
 exports.createUser = catchAsync(async (req, res, next) => {
-  //In the course jonas implement login functionality after signing up too
-  //But in this application we will not do that
-  //Because the receptionist as we said is the one responsible for creating accounts
-  //So there is no logic in login after sign up a new account by the receptionist
-  console.log(req.body.role);
   //Check if the user exists in any table
   const searchUser = {
     inPatientCollection: await PatientUser.findOne({
@@ -45,69 +50,95 @@ exports.createUser = catchAsync(async (req, res, next) => {
       status: "fail",
       message: "This username is already exists!",
     });
-  }
+  } else {
+    let newUser = undefined;
+    if (req.body.role === "Patient") {
+      newUser = await PatientUser.create({
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        contactInfo: req.body.contactInfo,
+        gender: req.body.gender,
+        dateOfBirth: req.body.dateOfBirth,
+        role: req.body.role,
+        patientDoctors: req.body.patientDoctors,
+        MRN: generateMRN(),
+        photo: req.file.filename, // Save the filename in the photo field
+      });
+      res.status(202).json({
+        status: "success",
+        message: "User created successfully!",
+        data: {
+          user: newUser,
+        },
+      });
+    } else if (req.body.role === "Doctor") {
+      newUser = await DoctorUser.create({
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        contactInfo: req.body.contactInfo,
+        gender: req.body.gender,
+        dateOfBirth: req.body.dateOfBirth,
+        role: req.body.role,
+        specialization: req.body.specialization,
+        photo: req.file.filename, // Save the filename in the photo field
+      });
+      res.status(202).json({
+        status: "success",
+        message: "User created successfully!",
+        data: {
+          user: newUser,
+        },
+      });
+    } else if (req.body.role === "Admin") {
+      newUser = await AdminUser.create({
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        contactInfo: req.body.contactInfo,
+        gender: req.body.gender,
+        dateOfBirth: req.body.dateOfBirth,
+        role: req.body.role,
+        photo: req.file.filename, // Save the filename in the photo field
+      });
+      res.status(202).json({
+        status: "success",
+        message: "User created successfully!",
+        data: {
+          user: newUser,
+        },
+      });
+    } else if (req.body.role === "Receptionist") {
+      newUser = await ReceptionistUser.create({
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        contactInfo: req.body.contactInfo,
+        gender: req.body.gender,
+        dateOfBirth: req.body.dateOfBirth,
+        role: req.body.role,
+        photo: req.file.filename, // Save the filename in the photo field
+      });
 
-  let newUser = undefined;
-
-  if (req.body.role === "Patient") {
-    newUser = await PatientUser.create({
-      name: req.body.name,
-      username: req.body.username,
-      password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
-      contactInfo: req.body.contactInfo,
-      gender: req.body.gender,
-      dateOfBirth: req.body.dateOfBirth,
-      role: req.body.role,
-      patientDoctors: req.body.patientDoctors,
-      MRN: generateMRN(),
-    });
+      res.status(202).json({
+        status: "success",
+        message: "User created successfully!",
+        data: {
+          user: newUser,
+        },
+      });
+    } else {
+      res.status(500).json({
+        status: "fail",
+        message: "Error Creating the User Pleas Enter Valid Input Data!",
+      });
+    }
   }
-  if (req.body.role === "Doctor") {
-    newUser = await DoctorUser.create({
-      name: req.body.name,
-      username: req.body.username,
-      password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
-      contactInfo: req.body.contactInfo,
-      gender: req.body.gender,
-      dateOfBirth: req.body.dateOfBirth,
-      role: req.body.role,
-      specialization: req.body.specialization,
-    });
-  }
-  if (req.body.role === "Admin") {
-    newUser = await AdminUser.create({
-      name: req.body.name,
-      username: req.body.username,
-      password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
-      contactInfo: req.body.contactInfo,
-      gender: req.body.gender,
-      dateOfBirth: req.body.dateOfBirth,
-      role: req.body.role,
-    });
-  }
-  if (req.body.role === "Receptionist") {
-    newUser = await ReceptionistUser.create({
-      name: req.body.name,
-      username: req.body.username,
-      password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
-      contactInfo: req.body.contactInfo,
-      gender: req.body.gender,
-      dateOfBirth: req.body.dateOfBirth,
-      role: req.body.role,
-    });
-  }
-
-  res.status(202).json({
-    status: "success",
-    message: "User created successfully!",
-    data: {
-      user: newUser,
-    },
-  });
 });
 
 exports.getAllUsers = async (req, res, next) => {
