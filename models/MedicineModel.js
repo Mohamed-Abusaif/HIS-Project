@@ -4,11 +4,16 @@ const validator = require("validator");
 const medicineSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: [true, "Please Provide Medicine Name!"],
   },
-  quantity: Number,
-  price: Number,
+  quantity: {
+    type: Number,
+    required: [true, "Please Provide Medicine Quantity!"],
+  },
+  price: { type: Number, required: [true, "Please Provide Medicine Price!"] },
   description: {
     type: String,
+    required: [true, "Please Provide Medicine Description!"],
   },
   pharmacy: {
     type: mongoose.Schema.Types.ObjectId,
