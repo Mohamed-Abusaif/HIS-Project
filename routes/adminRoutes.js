@@ -13,12 +13,15 @@ const protectAndAuthorize = (action) => [
 
 // Define Routes
 const routes = [
+  //Admin Routes
   {
     path: "/getAdminData/:id",
     method: "get",
     action: adminController.getAdminData,
     authAction: "Admin",
   },
+
+  //Pharmacies Routes
   {
     path: "/getPharmacies",
     method: "get",
@@ -43,6 +46,7 @@ const routes = [
     action: adminController.deletePharmacy,
     authAction: "Admin",
   },
+  //Medicines Routes
   {
     path: "/getMedicines",
     method: "get",
