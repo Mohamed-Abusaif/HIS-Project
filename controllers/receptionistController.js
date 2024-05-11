@@ -25,120 +25,59 @@ const upload = multer({ storage: storage });
 exports.uploadUserPhoto = upload.single("photo"); // Assuming your file input name is "photo"
 
 exports.createUser = catchAsync(async (req, res, next) => {
-  //Check if the user exists in any table
-  const searchUser = {
-    inPatientCollection: await PatientUser.findOne({
-      username: req.body.username,
-    }),
-    inDoctorCollection: await DoctorUser.findOne({
-      username: req.body.username,
-    }),
-    inAdminCollection: await AdminUser.findOne({
-      username: req.body.username,
-    }),
-    inReceptionistCollection: await ReceptionistUser.findOne({
-      username: req.body.username,
-    }),
-  };
-  if (
-    searchUser.inAdminCollection ||
-    searchUser.inDoctorCollection ||
-    searchUser.inPatientCollection ||
-    searchUser.inReceptionistCollection
-  ) {
-    res.status(401).json({
-      status: "fail",
-      message: "This username is already exists!",
-    });
-  } else {
-    let newUser = undefined;
-    if (req.body.role === "Patient") {
-      newUser = await PatientUser.create({
-        name: req.body.name,
-        username: req.body.username,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        contactInfo: req.body.contactInfo,
-        gender: req.body.gender,
-        dateOfBirth: req.body.dateOfBirth,
-        role: req.body.role,
-        patientDoctors: req.body.patientDoctors,
-        MRN: generateMRN(),
-        photo: req.file.filename, // Save the filename in the photo field
-      });
-      res.status(202).json({
-        status: "success",
-        message: "User created successfully!",
-        data: {
-          user: newUser,
-        },
-      });
-    } else if (req.body.role === "Doctor") {
-      newUser = await DoctorUser.create({
-        name: req.body.name,
-        username: req.body.username,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        contactInfo: req.body.contactInfo,
-        gender: req.body.gender,
-        dateOfBirth: req.body.dateOfBirth,
-        role: req.body.role,
-        specialization: req.body.specialization,
-        photo: req.file.filename, // Save the filename in the photo field
-      });
-      res.status(202).json({
-        status: "success",
-        message: "User created successfully!",
-        data: {
-          user: newUser,
-        },
-      });
-    } else if (req.body.role === "Admin") {
-      newUser = await AdminUser.create({
-        name: req.body.name,
-        username: req.body.username,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        contactInfo: req.body.contactInfo,
-        gender: req.body.gender,
-        dateOfBirth: req.body.dateOfBirth,
-        role: req.body.role,
-        photo: req.file.filename, // Save the filename in the photo field
-      });
-      res.status(202).json({
-        status: "success",
-        message: "User created successfully!",
-        data: {
-          user: newUser,
-        },
-      });
-    } else if (req.body.role === "Receptionist") {
-      newUser = await ReceptionistUser.create({
-        name: req.body.name,
-        username: req.body.username,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        contactInfo: req.body.contactInfo,
-        gender: req.body.gender,
-        dateOfBirth: req.body.dateOfBirth,
-        role: req.body.role,
-        photo: req.file.filename, // Save the filename in the photo field
-      });
+  const {
+    name,
+    username,
+    password,
+    passwordConfirm,
+    contactInfo,
+    gender,
+    dateOfBirth,
+    role,
+  } = req.body;
 
-      res.status(202).json({
-        status: "success",
-        message: "User created successfully!",
-        data: {
-          user: newUser,
-        },
-      });
-    } else {
-      res.status(500).json({
-        status: "fail",
-        message: "Error Creating the User Pleas Enter Valid Input Data!",
-      });
-    }
+  const userModels = {
+    Patient: PatientUser,
+    Doctor: DoctorUser,
+    Admin: AdminUser,
+    Receptionist: ReceptionistUser,
+  };
+
+  const UserModel = userModels[role];
+
+  if (!UserModel) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Invalid role provided",
+    });
   }
+
+  const existingUser = await UserModel.findOne({ username });
+
+  if (existingUser) {
+    return res.status(401).json({
+      status: "fail",
+      message: "This username is already taken!",
+    });
+  }
+
+  const newUser = await UserModel.create({
+    name,
+    username,
+    password,
+    passwordConfirm,
+    contactInfo,
+    gender,
+    dateOfBirth,
+    role,
+    ...(req.file && { photo: req.file.filename }), // Conditionally add photo if it exists
+  });
+
+  res.status(202).json({
+    status: "success",
+    message: "User created successfully!",
+    data: { user: newUser },
+  });
 });
 
 exports.getAllUsers = async (req, res, next) => {
