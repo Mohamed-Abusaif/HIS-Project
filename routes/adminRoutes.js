@@ -71,6 +71,31 @@ const routes = [
     action: adminController.deleteMedicine,
     authAction: "Admin",
   },
+  //Labs Routes
+  {
+    path: "/getLabs",
+    method: "get",
+    action: adminController.getLabs,
+    authAction: "Admin",
+  },
+  {
+    path: "/addLab",
+    method: "post",
+    action: adminController.addLab,
+    authAction: "Admin",
+  },
+  {
+    path: "/editLab/:id",
+    method: "post",
+    action: adminController.editLab,
+    authAction: "Admin",
+  },
+  {
+    path: "/deleteLab/:id",
+    method: "post",
+    action: adminController.deleteLab,
+    authAction: "Admin",
+  },
 ];
 
 // Register Routes
