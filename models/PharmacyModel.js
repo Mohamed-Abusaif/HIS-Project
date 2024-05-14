@@ -11,12 +11,6 @@ const pharmacySchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  // medicines: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "Medicine",
-  //   },
-  // ],
 });
 
 const Pharmacy = mongoose.model("Pharmacy", pharmacySchema);

@@ -4,7 +4,7 @@ const multer = require("multer");
 const cors = require("cors");
 
 const receptionistRouter = require("./routes/receptionistRoutes");
-const adminRouter = require("./routes/adminRoutes");
+const adminRouter = require("./routes/AdminRoutes/adminRoutes");
 const doctorRouter = require("./routes/doctorRoutes");
 const patientRouter = require("./routes/patientRoutes");
 
@@ -37,32 +37,9 @@ const upload = multer({ storage: storage });
 
 // 2) Routes
 app.use("/", receptionistRouter);
-app.use("/", adminRouter);
+app.use("/admin", adminRouter);
 app.use("/", patientRouter);
 app.use("/", doctorRouter);
 app.use("/", authRouter);
 
-// app.post("/createPharmacy", async (req, res, next) => {
-//   const newPharmacy = await Pharmacy.create(req.body);
-
-//   res.status(201).json({
-//     status: "success",
-//     data: {
-//       pharmacy: newPharmacy,
-//     },
-//   });
-// });
-
-// app.post("/createRadType", async (req, res, next) => {
-//   const newRadType = await RadTypeModel.create(req.body);
-
-//   res.status(201).json({
-//     status: "success",
-//     data: {
-//       radType: newRadType,
-//     },
-//   });
-// });
-
-//Hello
 module.exports = app;

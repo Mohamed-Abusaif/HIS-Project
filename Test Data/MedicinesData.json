@@ -1,0 +1,73 @@
+[
+    {
+      "name": "Paracetamol",
+      "quantity": 100,
+      "price": 5,
+      "description": "Commonly used to treat pain and fever.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Amoxicillin",
+      "quantity": 50,
+      "price": 10,
+      "description": "An antibiotic used to treat various bacterial infections.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Omeprazole",
+      "quantity": 30,
+      "price": 15,
+      "description": "Used to reduce stomach acid and treat gastroesophageal reflux disease (GERD).",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Lisinopril",
+      "quantity": 25,
+      "price": 20,
+      "description": "An ACE inhibitor used to treat high blood pressure and heart failure.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Atorvastatin",
+      "quantity": 20,
+      "price": 25,
+      "description": "A statin medication used to lower cholesterol levels.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Ibuprofen",
+      "quantity": 75,
+      "price": 7,
+      "description": "Nonsteroidal anti-inflammatory drug (NSAID) used for pain relief and fever reduction.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Metformin",
+      "quantity": 40,
+      "price": 12,
+      "description": "Used to treat type 2 diabetes.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Azithromycin",
+      "quantity": 60,
+      "price": 18,
+      "description": "An antibiotic used to treat a variety of bacterial infections.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Prednisone",
+      "quantity": 35,
+      "price": 30,
+      "description": "A corticosteroid used to treat inflammatory conditions and immune system disorders.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    },
+    {
+      "name": "Aspirin",
+      "quantity": 80,
+      "price": 3,
+      "description": "Used for pain relief, fever reduction, and anti-inflammatory purposes.",
+      "pharmacies": ["66430c463b477a59cbde7455"]
+    }
+  ]
+  

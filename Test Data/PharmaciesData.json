@@ -1,0 +1,28 @@
+[
+    {
+      "pharmacyNumber": "001",
+      "floor": "Ground Floor",
+      "description": "Main pharmacy located on the ground floor."
+    },
+    {
+      "pharmacyNumber": "002",
+      "floor": "First Floor",
+      "description": "Pharmacy serving patients on the first floor."
+    },
+    {
+      "pharmacyNumber": "003",
+      "floor": "Second Floor",
+      "description": "Pharmacy located on the second floor, specializing in pediatric medications."
+    },
+    {
+      "pharmacyNumber": "004",
+      "floor": "Basement",
+      "description": "Pharmacy in the basement, providing specialized services for oncology patients."
+    },
+    {
+      "pharmacyNumber": "005",
+      "floor": "Third Floor",
+      "description": "Pharmacy on the third floor, offering compounding services."
+    }
+  ]
+  

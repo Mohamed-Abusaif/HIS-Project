@@ -1,0 +1,63 @@
+[
+    {
+      "name": "X-ray",
+      "availability": "Available",
+      "description": "Utilizes electromagnetic radiation to create images of bones and certain tissues inside the body.",
+      "price": 100
+    },
+    {
+      "name": "Computed Tomography (CT)",
+      "availability": "Available",
+      "description": "Combines X-rays with computer technology to produce cross-sectional images of the body.",
+      "price": 200
+    },
+    {
+      "name": "Magnetic Resonance Imaging (MRI)",
+      "availability": "Available",
+      "description": "Uses magnetic fields and radio waves to generate detailed images of organs and tissues.",
+      "price": 300
+    },
+    {
+      "name": "Ultrasound",
+      "availability": "Available",
+      "description": "Uses high-frequency sound waves to create images of internal organs and structures.",
+      "price": 150
+    },
+    {
+      "name": "Positron Emission Tomography (PET)",
+      "availability": "Available",
+      "description": "Produces images of metabolic activity within the body, often used in oncology and neurology.",
+      "price": 400
+    },
+    {
+      "name": "Single Photon Emission Computed Tomography (SPECT)",
+      "availability": "Available",
+      "description": "Similar to PET, but uses different radioactive tracers to produce images of organ function.",
+      "price": 350
+    },
+    {
+      "name": "Mammography",
+      "availability": "Available",
+      "description": "Specialized X-ray imaging used for breast cancer screening and diagnosis.",
+      "price": 250
+    },
+    {
+      "name": "Fluoroscopy",
+      "availability": "Available",
+      "description": "Real-time X-ray imaging that allows visualization of moving structures within the body, often used during medical procedures.",
+      "price": 180
+    },
+    {
+      "name": "Interventional Radiology",
+      "availability": "Available",
+      "description": "Minimally invasive procedures performed under imaging guidance (such as X-ray, CT, or ultrasound) to diagnose and treat diseases.",
+      "price": 500
+    },
+    {
+      "name": "Nuclear Medicine",
+      "availability": "Available",
+      "description": "Uses small amounts of radioactive materials (radiotracers) to diagnose and treat a variety of diseases, such as cancer and heart disease.",
+      "price": 450
+    }
+  ]
+  

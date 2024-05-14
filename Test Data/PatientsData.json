@@ -1,0 +1,113 @@
+[
+    {
+      "name": "محمد أحمد",
+      "username": "mohamed@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "123-456-7890",
+      "gender": "Male",
+      "dateOfBirth": "1990-05-15",
+      "role": "Patient",
+      "MRN": 386295746
+    },
+    {
+      "name": "فاطمة يوسف",
+      "username": "fatima@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "987-654-3210",
+      "gender": "Female",
+      "dateOfBirth": "1985-10-20",
+      "role": "Patient",
+      "MRN": 234567891
+    },
+    {
+      "name": "علي محمود",
+      "username": "ali@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "555-555-5555",
+      "gender": "Male",
+      "dateOfBirth": "1982-03-08",
+      "role": "Patient",
+      "MRN": 658372910
+    },
+    {
+      "name": "ريما عبد الله",
+      "username": "reema@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "333-333-3333",
+      "gender": "Female",
+      "dateOfBirth": "1995-07-12",
+      "role": "Patient",
+      "MRN": 827491053
+    },
+    {
+      "name": "علاء محمد",
+      "username": "alaa@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "111-222-3333",
+      "gender": "Male",
+      "dateOfBirth": "1988-11-25",
+      "role": "Patient",
+      "MRN": 135724680
+    },
+    {
+      "name": "رانيا خالد",
+      "username": "ranya@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "777-888-9999",
+      "gender": "Female",
+      "dateOfBirth": "1992-02-18",
+      "role": "Patient",
+      "MRN": 482039571
+    },
+    {
+      "name": "عمر علي",
+      "username": "omar@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "444-555-6666",
+      "gender": "Male",
+      "dateOfBirth": "1987-06-14",
+      "role": "Patient",
+      "MRN": 907654312
+    },
+    {
+      "name": "ليلى حسين",
+      "username": "layla@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "222-333-4444",
+      "gender": "Female",
+      "dateOfBirth": "1991-09-22",
+      "role": "Patient",
+      "MRN": 249186735
+    },
+    {
+      "name": "محمود عبد الرحمن",
+      "username": "mahmoud@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "999-111-2222",
+      "gender": "Male",
+      "dateOfBirth": "1984-12-10",
+      "role": "Patient",
+      "MRN": 810739254
+    },
+    {
+      "name": "نورهان ياسين",
+      "username": "nourhan@example.com",
+      "password": "pass1234",
+      "passwordConfirm": "pass1234",
+      "contactInfo": "666-777-8888",
+      "gender": "Female",
+      "dateOfBirth": "1989-04-28",
+      "role": "Patient",
+      "MRN": 573928106
+    }
+  ]
+  
