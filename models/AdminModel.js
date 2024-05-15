@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const moment = require("moment");
 const bcrypt = require("bcryptjs");
 // Define base User schema with discriminator key as an enum
 const adminSchema = new mongoose.Schema({
@@ -45,6 +46,9 @@ const adminSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
+    get: function (value) {
+      return moment(value).format("DD/MM/YYYY");
+    },
     required: [true, "Please provide date of birth!"],
   },
   role: {

@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const moment = require("moment");
+
 const { randomBytes } = require("crypto");
 const DoctorUser = require("./DoctorModel");
 
@@ -45,6 +47,9 @@ const patientSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
+    get: function (value) {
+      return moment(value).format("DD/MM/YYYY");
+    },
     required: [true, "Please provide date of birth!"],
   },
   role: {
