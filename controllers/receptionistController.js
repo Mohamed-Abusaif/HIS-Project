@@ -63,7 +63,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         role: req.body.role,
         patientDoctors: req.body.patientDoctors,
         MRN: generateMRN(),
-        photo: req.file.filename, // Save the filename in the photo field
+        // photo: req.file.filename, // Save the filename in the photo field
       });
       res.status(202).json({
         status: "success",
@@ -83,7 +83,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
         specialization: req.body.specialization,
-        photo: req.file.filename, // Save the filename in the photo field
+        // photo: req.file.filename, // Save the filename in the photo field
       });
       res.status(202).json({
         status: "success",
@@ -102,7 +102,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         gender: req.body.gender,
         dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
-        photo: req.file.filename, // Save the filename in the photo field
+        // photo: req.file.filename, // Save the filename in the photo field
       });
       res.status(202).json({
         status: "success",
@@ -121,7 +121,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         gender: req.body.gender,
         dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
-        photo: req.file.filename, // Save the filename in the photo field
+        // photo: req.file.filename, // Save the filename in the photo field
       });
 
       res.status(202).json({
