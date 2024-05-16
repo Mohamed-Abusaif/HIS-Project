@@ -51,10 +51,6 @@ exports.createUser = catchAsync(async (req, res, next) => {
     });
   } else {
     let newUser = undefined;
-    const [day, month, year] = req.body.dateOfBirth.split("/").map(Number);
-
-    // Create a JavaScript Date object with the parsed components
-    const dob = new Date(year, month - 1, day);
 
     if (req.body.role === "Patient") {
       newUser = await PatientUser.create({
@@ -64,7 +60,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         passwordConfirm: req.body.passwordConfirm,
         contactInfo: req.body.contactInfo,
         gender: req.body.gender,
-        dateOfBirth: dob,
+        dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
         patientDoctors: req.body.patientDoctors,
         MRN: generateMRN(),
@@ -85,7 +81,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         passwordConfirm: req.body.passwordConfirm,
         contactInfo: req.body.contactInfo,
         gender: req.body.gender,
-        dateOfBirth: dob,
+        dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
         specialization: req.body.specialization,
         // photo: req.file.filename, // Save the filename in the photo field
@@ -105,7 +101,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         passwordConfirm: req.body.passwordConfirm,
         contactInfo: req.body.contactInfo,
         gender: req.body.gender,
-        dateOfBirth: dob,
+        dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
         // photo: req.file.filename, // Save the filename in the photo field
       });
@@ -124,7 +120,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
         passwordConfirm: req.body.passwordConfirm,
         contactInfo: req.body.contactInfo,
         gender: req.body.gender,
-        dateOfBirth: dob,
+        dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
         // photo: req.file.filename, // Save the filename in the photo field
       });
