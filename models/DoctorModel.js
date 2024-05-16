@@ -53,10 +53,7 @@ const doctorSchema = new mongoose.Schema({
     enum: ["Male", "Female"],
   },
   dateOfBirth: {
-    type: Date,
-    get: function (value) {
-      return moment(value).format("DD/MM/YYYY");
-    },
+    type: String,
     required: [true, "Please provide date of birth!"],
   },
   role: {
