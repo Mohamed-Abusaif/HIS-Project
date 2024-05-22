@@ -28,6 +28,24 @@ const routes = [
     action: adminController.getAdminData,
     authAction: "Admin",
   },
+  {
+    path: "/editPatient/:id",
+    method: "post",
+    action: [adminController.uploadPatientImages, adminController.editPatient],
+    authAction: "Admin",
+  },
+  {
+    path: "/editDoctorPatient/:id",
+    method: "post",
+    action: adminController.editDoctorPatient,
+    authAction: "Admin",
+  },
+  {
+    path: "/getAllUsers",
+    method: "get",
+    action: adminController.getAllUsers,
+    authAction: "Admin",
+  },
 ];
 
 // Register Routes

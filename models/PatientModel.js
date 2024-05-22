@@ -78,18 +78,8 @@ const patientSchema = new mongoose.Schema({
       ref: "Medicine",
     },
   ],
-  labResults: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "LabResults",
-    },
-  ],
-  radResults: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "RadResults",
-    },
-  ],
+  labResults: Array,
+  radResults: Array,
 });
 
 patientSchema.pre("save", async function (next) {
