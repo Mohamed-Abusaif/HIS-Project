@@ -8,7 +8,7 @@ const authorizeMiddleware = require("../../utils/authorize");
 const pharmacyRoutes = require("./pharmaciesRoutes");
 router.use("/pharmacies", pharmacyRoutes);
 const medicineRoutes = require("./medicinesRoutes");
-router.use("/labs", medicineRoutes);
+router.use("/medicines", medicineRoutes);
 const labsRoutes = require("./labsRoutes");
 router.use("/labs", labsRoutes);
 const radsRoutes = require("./radsRoutes");
