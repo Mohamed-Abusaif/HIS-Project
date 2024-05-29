@@ -15,12 +15,10 @@ const medicineSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Provide Medicine Description!"],
   },
-  pharmacies: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Pharmacy",
-    },
-  ],
+  pharmacies: {
+    type: String,
+    default: "Pharmacy 1",
+  },
 });
 
 const Medicine = mongoose.model("Medicine", medicineSchema);
