@@ -30,7 +30,6 @@ exports.editMedicine = async (req, res, next) => {
     req.body,
     {
       new: true,
-      runValidators: true,
     }
   );
 
