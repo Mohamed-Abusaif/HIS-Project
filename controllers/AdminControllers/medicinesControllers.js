@@ -41,6 +41,7 @@ exports.editMedicine = async (req, res, next) => {
   } else {
     res.status(200).json({
       status: "success",
+      message: "Medicine Updated Successfully!",
       data: {
         medicine,
       },
