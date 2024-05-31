@@ -3,13 +3,6 @@ const validator = require("validator");
 const moment = require("moment");
 
 const bcrypt = require("bcryptjs");
-// Define base User schema with discriminator key as an enum
-
-const doctorAvailabilitySchema = new mongoose.Schema({
-  time: { type: String, required: true },
-  clinicNumber: { type: String, required: true },
-  floorInHospital: { type: String, required: true },
-});
 
 const doctorSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name!"] },
@@ -29,9 +22,7 @@ const doctorSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  //you don't have to confirm password because the receptionist is responisble for the registration of users
-  //you can put it to the reciptionist (it does not matter)
-  //just a mechanism for the reciptionist to be sure of the integrity of data
+
   passwordConfirm: {
     type: String,
     required: [false, "Please confirm your password!"],
@@ -76,7 +67,7 @@ const doctorSchema = new mongoose.Schema({
       ref: "PatientUser",
     },
   ],
-  doctorAvailabilityTime: [doctorAvailabilitySchema],
+  doctorAvailabilityTime: { type: String },
 });
 
 doctorSchema.pre("save", async function (next) {

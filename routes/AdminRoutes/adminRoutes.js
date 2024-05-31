@@ -36,21 +36,9 @@ const routes = [
     authAction: "Admin",
   },
   {
-    path: "/addDoctorAvailability/:id",
-    method: "post",
-    action: adminController.addDoctorAvailabilityTime,
-    authAction: "Admin",
-  },
-  {
     path: "/editDoctorAvailability/:id",
     method: "post",
     action: adminController.editDoctorAvailabilityTime,
-    authAction: "Admin",
-  },
-  {
-    path: "/deleteDoctorAvailability/:id",
-    method: "delete",
-    action: adminController.deleteDoctorAvailabilityTime,
     authAction: "Admin",
   },
 ];
