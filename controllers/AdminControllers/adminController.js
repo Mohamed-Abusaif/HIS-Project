@@ -71,33 +71,12 @@ exports.editPatient = async (req, res, next) => {
     });
   }
 };
-exports.editDoctorPatient = async (req, res, next) => {
-  const userId = req.params.id;
-  try {
-    let doctorUser = await DoctorUser.findByIdAndUpdate(userId, req.body, {
-      new: true,
-      runValidators: true,
-    });
 
-    if (doctorUser) {
-      res.status(200).json({
-        status: "success",
-        message: "Doctor Info Updated Successfully",
-        doctorUser,
-      });
-    } else {
-      res.status(404).json({
-        status: "fail",
-        message: "User Not Found!",
-      });
-    }
-  } catch (err) {
-    res.status(500).json({
-      status: "fail",
-      error: err.message,
-    });
-  }
-};
+//Doctor Availability Time Routes
+//add - edit - delete
+//Doctor Patient Routes
+exports.deleteDoctorPatient = async (req, res, next) => {};
+exports.addDoctorPatient = async (req, res, next) => {};
 
 exports.getAllUsers = async (req, res, next) => {
   const allUsers = {

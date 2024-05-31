@@ -5,14 +5,8 @@ const adminController = require("../../controllers/AdminControllers/adminControl
 const authController = require("../../controllers/authController");
 const authorizeMiddleware = require("../../utils/authorize");
 
-const pharmacyRoutes = require("./pharmaciesRoutes");
-router.use("/pharmacies", pharmacyRoutes);
 const medicineRoutes = require("./medicinesRoutes");
 router.use("/medicines", medicineRoutes);
-const labsRoutes = require("./labsRoutes");
-router.use("/labs", labsRoutes);
-const radsRoutes = require("./radsRoutes");
-router.use("/rads", radsRoutes);
 
 const protectAndAuthorize = (action) => [
   authController.protect,
@@ -32,12 +26,6 @@ const routes = [
     path: "/editPatient/:id",
     method: "post",
     action: [adminController.uploadPatientImages, adminController.editPatient],
-    authAction: "Admin",
-  },
-  {
-    path: "/editDoctorPatient/:id",
-    method: "post",
-    action: adminController.editDoctorPatient,
     authAction: "Admin",
   },
   {
