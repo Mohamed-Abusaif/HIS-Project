@@ -73,11 +73,113 @@ exports.editPatient = async (req, res, next) => {
 };
 
 //Doctor Availability Time Routes
-//add - edit - delete
+exports.addDoctorAvailabilityTime = async (req, res, next) => {
+  const doctorId = req.params.id;
+  const availabilityTime = req.body.doctorAvailabilityTime;
+  const doctorUser = await DoctorUser.findById(doctorId);
+  console.log(doctorUser);
+  if (doctorUser) {
+    doctorUser.doctorAvailabilityTime.push(availabilityTime);
+    doctorUser.save();
+    res.status(200).json({
+      status: "success",
+      message: "Availability Time Added Successfully",
+      doctorUser,
+    });
+  } else {
+    res.status(404).json({
+      status: "fail",
+      message: "Doctor Not Found!",
+    });
+  }
+};
+exports.editDoctorAvailabilityTime = async (req, res, next) => {
+  try {
+    const doctorId = req.params.id;
+    const availabilityTimeId = req.body._id;
+    const availabilityTime = req.body.doctorAvailabilityTime;
+
+    const doctorUser = await DoctorUser.findById(doctorId);
+    if (!doctorUser) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Doctor Not Found!",
+      });
+    }
+
+    const availabilityTimeIndex = doctorUser.doctorAvailabilityTime.findIndex(
+      (time) => time._id.toString() === availabilityTimeId
+    );
+
+    if (availabilityTimeIndex === -1) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Availability Time Not Found!",
+      });
+    }
+
+    doctorUser.doctorAvailabilityTime[availabilityTimeIndex] = availabilityTime;
+    await doctorUser.save();
+
+    res.status(200).json({
+      status: "success",
+      message: "Availability Time Updated Successfully",
+      doctorUser,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
+exports.deleteDoctorAvailabilityTime = async (req, res, next) => {
+  try {
+    const doctorId = req.params.id;
+    const availabilityTimeId = req.body._id;
+
+    const doctorUser = await DoctorUser.findById(doctorId);
+    if (!doctorUser) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Doctor Not Found!",
+      });
+    }
+
+    const availabilityTimeIndex = doctorUser.doctorAvailabilityTime.findIndex(
+      (time) => time._id.toString() === availabilityTimeId
+    );
+
+    if (availabilityTimeIndex === -1) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Availability Time Not Found!",
+      });
+    }
+
+    doctorUser.doctorAvailabilityTime.splice(availabilityTimeIndex, 1);
+    await doctorUser.save();
+
+    res.status(200).json({
+      status: "success",
+      message: "Availability Time Deleted Successfully",
+      doctorUser,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
+
 //Doctor Patient Routes
-exports.deleteDoctorPatient = async (req, res, next) => {};
+exports.deleteDoctorPatient = async (req, res, next) => {
+  
+};
 exports.addDoctorPatient = async (req, res, next) => {};
 
+//get All Users Route
 exports.getAllUsers = async (req, res, next) => {
   const allUsers = {
     patientUsers: await PatientUser.find(),

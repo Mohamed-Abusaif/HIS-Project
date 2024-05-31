@@ -34,7 +34,7 @@ const doctorSchema = new mongoose.Schema({
   //just a mechanism for the reciptionist to be sure of the integrity of data
   passwordConfirm: {
     type: String,
-    required: [true, "Please confirm your password!"],
+    required: [false, "Please confirm your password!"],
     validate: {
       //This only works on CREATE and SAVE!!!
       validator: function (el) {
@@ -76,10 +76,7 @@ const doctorSchema = new mongoose.Schema({
       ref: "PatientUser",
     },
   ],
-  doctorAvailabilityTime: {
-    type: [doctorAvailabilitySchema],
-    required: [true, "Please provide doctor availability information!"],
-  },
+  doctorAvailabilityTime: [doctorAvailabilitySchema],
 });
 
 doctorSchema.pre("save", async function (next) {

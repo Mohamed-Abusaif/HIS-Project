@@ -6,6 +6,7 @@ const authController = require("../../controllers/authController");
 const authorizeMiddleware = require("../../utils/authorize");
 
 const medicineRoutes = require("./medicinesRoutes");
+const { path } = require("pdfkit");
 router.use("/medicines", medicineRoutes);
 
 const protectAndAuthorize = (action) => [
@@ -32,6 +33,24 @@ const routes = [
     path: "/getAllUsers",
     method: "get",
     action: adminController.getAllUsers,
+    authAction: "Admin",
+  },
+  {
+    path: "/addDoctorAvailability/:id",
+    method: "post",
+    action: adminController.addDoctorAvailabilityTime,
+    authAction: "Admin",
+  },
+  {
+    path: "/editDoctorAvailability/:id",
+    method: "post",
+    action: adminController.editDoctorAvailabilityTime,
+    authAction: "Admin",
+  },
+  {
+    path: "/deleteDoctorAvailability/:id",
+    method: "delete",
+    action: adminController.deleteDoctorAvailabilityTime,
     authAction: "Admin",
   },
 ];
