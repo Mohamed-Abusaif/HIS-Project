@@ -75,7 +75,8 @@ exports.editPatient = async (req, res, next) => {
 //Doctor Availability Time Routes
 exports.editDoctorAvailabilityTime = async (req, res, next) => {
   const doctorId = req.params.id;
-  const doctorUser = await DoctorUser.findById(doctorId);
+  const doctorUser =
+    await DoctorUser.findById(doctorId).populate("doctorPatients");
   if (doctorUser) {
     doctorUser.doctorAvailabilityTime = req.body.doctorAvailabilityTime;
     await doctorUser.save();
@@ -91,15 +92,90 @@ exports.editDoctorAvailabilityTime = async (req, res, next) => {
     });
   }
 };
+
+//API ID return doctor's patients
+exports.getDoctorPatient = async (req, res, next) => {
+  const doctorId = req.params.id;
+  const doctorUser =
+    await DoctorUser.findById(doctorId).populate("doctorPatients");
+  if (doctorUser) {
+    res.status(200).json({
+      status: "success",
+      doctorUser,
+    });
+  } else {
+    res.status(404).json({
+      status: "fail",
+      message: "Doctor Not Found!",
+    });
+  }
+};
+
 //Doctor Patient Routes
-exports.deleteDoctorPatient = async (req, res, next) => {};
-exports.addDoctorPatient = async (req, res, next) => {};
+//in this route we will delete a patient from a doctor's list of patients
+// first i want to get the doctor's list of patients
+// then i want to search in the list for the patient
+// then i want to remove the patient from the list
+// then i want to save the doctor's list of patients
+// then i want to send a response to the user
+//Note: the doctor patients list is an array of patient ids
+exports.deleteDoctorPatient = async (req, res, next) => {
+  const doctorId = req.params.doctorId;
+  const patientId = req.params.patientId;
+  const doctorUser = await DoctorUser.findById(doctorId);
+  if (doctorUser) {
+    const patientIndex = doctorUser.doctorPatients.indexOf(patientId);
+    if (patientIndex > -1) {
+      doctorUser.doctorPatients.splice(patientIndex, 1);
+      await doctorUser.save();
+      res.status(200).json({
+        status: "success",
+        message: "Patient Deleted Successfully",
+        //populate the doctorUser to get the patient's data in the response
+        doctorUser:
+          await DoctorUser.findById(doctorId).populate("doctorPatients"),
+      });
+    } else {
+      res.status(404).json({
+        status: "fail",
+        message: "Patient Not Found in Doctor's List!",
+      });
+    }
+  } else {
+    res.status(404).json({
+      status: "fail",
+      message: "Doctor Not Found!",
+    });
+  }
+};
+
+exports.addDoctorPatient = async (req, res, next) => {
+  const doctorId = req.params.doctorId;
+  const patientId = req.params.patientId;
+  const doctorUser = await DoctorUser.findById(doctorId);
+  if (doctorUser) {
+    doctorUser.doctorPatients.push(patientId);
+    await doctorUser.save();
+    res.status(200).json({
+      status: "success",
+      message: "Patient Added Successfully",
+      //populate the doctorUser to get the patient's data in the response
+      doctorUser:
+        await DoctorUser.findById(doctorId).populate("doctorPatients"),
+    });
+  } else {
+    res.status(404).json({
+      status: "fail",
+      message: "Doctor Not Found!",
+    });
+  }
+};
 
 //get All Users Route
 exports.getAllUsers = async (req, res, next) => {
   const allUsers = {
     patientUsers: await PatientUser.find(),
-    doctorUsers: await DoctorUser.find(),
+    doctorUsers: await DoctorUser.find().populate("doctorPatients"),
     adminUsers: await AdminUser.find(),
     receptionistUsers: await ReceptionistUser.find(),
   };

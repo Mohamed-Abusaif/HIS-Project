@@ -41,6 +41,24 @@ const routes = [
     action: adminController.editDoctorAvailabilityTime,
     authAction: "Admin",
   },
+  {
+    path: "/deleteDoctorPatient/:doctorId/:patientId",
+    method: "delete",
+    action: adminController.deleteDoctorPatient,
+    authAction: "Admin",
+  },
+  {
+    path: "/addDoctorPatient/:doctorId/:patientId",
+    method: "post",
+    action: adminController.addDoctorPatient,
+    authAction: "Admin",
+  },
+  {
+    path: "/getDoctorPatients/:id",
+    method: "get",
+    action: adminController.getDoctorPatient,
+    authAction: "Admin",
+  },
 ];
 
 // Register Routes
