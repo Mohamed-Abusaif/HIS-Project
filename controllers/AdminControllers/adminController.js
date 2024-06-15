@@ -38,10 +38,10 @@ exports.editPatient = async (req, res, next) => {
       medicines: req.body.medicines,
     };
     if (req.files && req.files.labResults) {
-      userObject.labResults = req.files.labResults[0].path;
+      userObject.labResults = req.files.labResults[0].path.replace(/\\/g, "/");
     }
     if (req.files && req.files.radResults) {
-      userObject.radResults = req.files.radResults[0].path;
+      userObject.radResults = req.files.radResults[0].path.replace(/\\/g, "/");
     }
     const patientUser = await PatientUser.findByIdAndUpdate(
       userId,
