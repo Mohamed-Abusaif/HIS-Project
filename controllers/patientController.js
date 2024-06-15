@@ -1,5 +1,6 @@
 const PatientUser = require("./../models/PatientModel");
 const formatPdf = require("../utils/formatPdf");
+const path = require("path");
 const contentDisposition = require("content-disposition");
 const PDFDocument = require("pdfkit");
 
@@ -21,6 +22,17 @@ exports.getPatientData = async (req, res, next) => {
   }
 };
 
+exports.getImagesFromUploads = async (req, res, next) => {
+  const imagePath = req.params.imagePath;
+  const fullPath = path.resolve("uploads", imagePath);
+  console.log(fullPath);
+  // Check if the file exists and send it
+  res.sendFile(fullPath, (err) => {
+    if (err) {
+      res.status(404).send("Image not found");
+    }
+  });
+};
 exports.downloadPatientData = async (req, res, next) => {
   const patientId = req.params.id;
   let patientData = await PatientUser.findById(patientId);

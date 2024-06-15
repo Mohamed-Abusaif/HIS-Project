@@ -2,7 +2,7 @@ const AdminUser = require("../../models/AdminModel");
 const PatientUser = require("../../models/PatientModel");
 const DoctorUser = require("./../../models/DoctorModel");
 const ReceptionistUser = require("./../../models/ReceptionistModel");
-
+const path = require("path");
 const upload = require("./../../utils/multerConfig");
 const mongoose = require("mongoose");
 const fs = require("fs");
@@ -109,13 +109,6 @@ exports.getDoctorPatient = async (req, res, next) => {
       message: "Doctor Not Found!",
     });
   }
-};
-
-exports.getImagesFromUploads = async (req, res, next) => {
-  const img = req.params.imagePath;
-  res.status(200).json({
-    img,
-  });
 };
 
 //Doctor Patient Routes
