@@ -1,6 +1,5 @@
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
-const mongoose = require("mongoose");
 
 // Function to format PDF document
 exports.formatUserDataToPDF = (doc, userData) => {
@@ -43,25 +42,6 @@ exports.formatUserDataToPDF = (doc, userData) => {
   doc.fontSize(14).text(`Role: ${userData.role}`, { align: "left" }).moveDown();
   doc.fontSize(14).text(`MRN: ${userData.MRN}`, { align: "left" }).moveDown();
 
-  // Add patient doctors
-  if (userData.patientDoctors && userData.patientDoctors.length > 0) {
-    doc.fontSize(14).text("Patient Doctors:", { align: "left" }).moveDown();
-    userData.patientDoctors.forEach((doctor, index) => {
-      doc
-        .fontSize(12)
-        .text(formatArabicText(`${index + 1}`, doctor.name), { align: "left" })
-        .moveDown();
-    });
-  }
-
-  // Add medical history
-  if (userData.medicalHistory) {
-    doc
-      .fontSize(14)
-      .text(`Medical History: ${userData.medicalHistory}`, { align: "left" })
-      .moveDown();
-  }
-
   // Add medicines
   if (userData.medicines && userData.medicines.length > 0) {
     doc.fontSize(14).text("Medicines:", { align: "left" }).moveDown();
@@ -76,11 +56,20 @@ exports.formatUserDataToPDF = (doc, userData) => {
   // Add lab results
   if (userData.labResults && userData.labResults.length > 0) {
     doc.addPage();
-    doc.fontSize(14).text("Lab Results:", { align: "left" }).moveDown();
+    doc
+      .font("Amiri")
+      .fontSize(20)
+      .text("Laboratory Results:", { align: "center" })
+      .moveDown();
+
     userData.labResults.forEach((result, index) => {
       doc
-        .fontSize(12)
-        .text(`${index + 1}. ${result.name}`, { align: "left" })
+        .moveDown(2)
+        .image(`${result}`, {
+          fit: [500, 500],
+          align: "center",
+          valign: "center",
+        })
         .moveDown();
     });
   }
@@ -88,11 +77,21 @@ exports.formatUserDataToPDF = (doc, userData) => {
   // Add radiology results
   if (userData.radResults && userData.radResults.length > 0) {
     doc.addPage();
-    doc.fontSize(14).text("Radiology Results:", { align: "left" }).moveDown();
+    doc
+      .font("Amiri")
+      .fontSize(20)
+      .text("Radiology Results:", { align: "center" })
+      .moveDown();
+
     userData.radResults.forEach((result, index) => {
       doc
         .fontSize(12)
-        .text(`${index + 1}. ${result.name}`, { align: "left" })
+        .moveDown(2)
+        .image(`${result}`, {
+          fit: [500, 500],
+          align: "center",
+          valign: "center",
+        })
         .moveDown();
     });
   }

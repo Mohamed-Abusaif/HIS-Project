@@ -66,7 +66,7 @@ const patientSchema = new mongoose.Schema({
       "Please Choose another MRN, Just Try to Create The User Again and It will be handled directly!",
     ],
   },
-  medicines: { type: String },
+  medicines: Array,
   labResults: Array,
   radResults: Array,
 });

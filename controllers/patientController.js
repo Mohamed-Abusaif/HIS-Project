@@ -5,9 +5,7 @@ const PDFDocument = require("pdfkit");
 
 exports.getPatientData = async (req, res, next) => {
   patientId = req.params.id;
-  let patientData = await PatientUser.findById(patientId)
-    .populate("patientDoctors")
-    .populate("medicines");
+  let patientData = await PatientUser.findById(patientId);
 
   //only show the doctor's name and specialization and his contact info here for the patient
   if (patientData) {
@@ -24,10 +22,9 @@ exports.getPatientData = async (req, res, next) => {
 };
 
 exports.downloadPatientData = async (req, res, next) => {
-  patientId = req.params.id;
-  patientData = await PatientUser.findById(patientId)
-    .populate("patientDoctors")
-    .populate("medicines");
+  const patientId = req.params.id;
+  let patientData = await PatientUser.findById(patientId);
+  console.log(patientData.labResults);
   if (patientData) {
     const doc = new PDFDocument();
     const encodedName = encodeURIComponent(patientData.name);
