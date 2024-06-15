@@ -111,6 +111,13 @@ exports.getDoctorPatient = async (req, res, next) => {
   }
 };
 
+exports.getImagesFromUploads = async (req, res, next) => {
+  const img = req.params.imagePath;
+  res.status(200).json({
+    img,
+  });
+};
+
 //Doctor Patient Routes
 //in this route we will delete a patient from a doctor's list of patients
 // first i want to get the doctor's list of patients

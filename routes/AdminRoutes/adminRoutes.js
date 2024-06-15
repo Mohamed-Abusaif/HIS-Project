@@ -59,6 +59,12 @@ const routes = [
     action: adminController.getDoctorPatient,
     authAction: "Admin",
   },
+  {
+    path: "uploads/:imagePath",
+    method: "get",
+    action: adminController.getImagesFromUploads,
+    authAction: "Admin",
+  },
 ];
 
 // Register Routes
