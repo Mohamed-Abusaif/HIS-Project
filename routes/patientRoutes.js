@@ -20,5 +20,4 @@ router
     authorizeMiddleware.authorize("Patient"),
     patientController.downloadPatientData
   );
-router.route("/uploads/:imagePath").get(patientController.getImagesFromUploads);
 module.exports = router;
