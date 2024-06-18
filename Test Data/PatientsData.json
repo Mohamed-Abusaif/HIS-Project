@@ -1,113 +1,240 @@
 [
-    {
-      "name": "محمد أحمد",
-      "username": "mohamed@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "123-456-7890",
-      "gender": "Male",
-      "dateOfBirth": "1990-05-15",
-      "role": "Patient",
-      "MRN": 386295746
-    },
-    {
-      "name": "فاطمة يوسف",
-      "username": "fatima@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "987-654-3210",
-      "gender": "Female",
-      "dateOfBirth": "1985-10-20",
-      "role": "Patient",
-      "MRN": 234567891
-    },
-    {
-      "name": "علي محمود",
-      "username": "ali@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "555-555-5555",
-      "gender": "Male",
-      "dateOfBirth": "1982-03-08",
-      "role": "Patient",
-      "MRN": 658372910
-    },
-    {
-      "name": "ريما عبد الله",
-      "username": "reema@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "333-333-3333",
-      "gender": "Female",
-      "dateOfBirth": "1995-07-12",
-      "role": "Patient",
-      "MRN": 827491053
-    },
-    {
-      "name": "علاء محمد",
-      "username": "alaa@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "111-222-3333",
-      "gender": "Male",
-      "dateOfBirth": "1988-11-25",
-      "role": "Patient",
-      "MRN": 135724680
-    },
-    {
-      "name": "رانيا خالد",
-      "username": "ranya@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "777-888-9999",
-      "gender": "Female",
-      "dateOfBirth": "1992-02-18",
-      "role": "Patient",
-      "MRN": 482039571
-    },
-    {
-      "name": "عمر علي",
-      "username": "omar@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "444-555-6666",
-      "gender": "Male",
-      "dateOfBirth": "1987-06-14",
-      "role": "Patient",
-      "MRN": 907654312
-    },
-    {
-      "name": "ليلى حسين",
-      "username": "layla@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "222-333-4444",
-      "gender": "Female",
-      "dateOfBirth": "1991-09-22",
-      "role": "Patient",
-      "MRN": 249186735
-    },
-    {
-      "name": "محمود عبد الرحمن",
-      "username": "mahmoud@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "999-111-2222",
-      "gender": "Male",
-      "dateOfBirth": "1984-12-10",
-      "role": "Patient",
-      "MRN": 810739254
-    },
-    {
-      "name": "نورهان ياسين",
-      "username": "nourhan@example.com",
-      "password": "pass1234",
-      "passwordConfirm": "pass1234",
-      "contactInfo": "666-777-8888",
-      "gender": "Female",
-      "dateOfBirth": "1989-04-28",
-      "role": "Patient",
-      "MRN": 573928106
-    }
-  ]
-  
+  {
+    "name": "يوسف محمد",
+    "username": "youssef.mohammad@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567801",
+    "gender": "Male",
+    "dateOfBirth": "1-1-1990",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7205",
+    "medicines": [
+      "Paracetamol",
+      "Ibuprofen"
+    ]
+  },
+  {
+    "name": "لمى عبدالعزيز",
+    "username": "lamia.abdulaziz@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567802",
+    "gender": "Female",
+    "dateOfBirth": "2-2-1991",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7206",
+    "medicines": [
+      "Amoxicillin",
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "name": "عبدالله عبدالله",
+    "username": "abdullah.abdullah@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567803",
+    "gender": "Male",
+    "dateOfBirth": "3-3-1992",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7207",
+    "medicines": [
+      "Diazepam",
+      "Lorazepam"
+    ]
+  },
+  {
+    "name": "نور محمد",
+    "username": "nour.mohammad@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567804",
+    "gender": "Female",
+    "dateOfBirth": "4-4-1993",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7208",
+    "medicines": [
+      "Aspirin",
+      "Warfarin"
+    ]
+  },
+  {
+    "name": "أحمد حسين",
+    "username": "ahmad.hussain@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567805",
+    "gender": "Male",
+    "dateOfBirth": "5-5-1994",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7209",
+    "medicines": [
+      "Simvastatin",
+      "Lisinopril"
+    ]
+  },
+  {
+    "name": "لينا عبدالله",
+    "username": "leena.abdullah@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567806",
+    "gender": "Female",
+    "dateOfBirth": "6-6-1995",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f720a",
+    "medicines": [
+      "Metformin",
+      "Insulin"
+    ]
+  },
+  {
+    "name": "أحمد علي",
+    "username": "ahmad.ali@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567807",
+    "gender": "Male",
+    "dateOfBirth": "7-7-1996",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f720b",
+    "medicines": [
+      "Esomeprazole",
+      "Omeprazole"
+    ]
+  },
+  {
+    "name": "ريم حسام",
+    "username": "reem.hossam@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567808",
+    "gender": "Female",
+    "dateOfBirth": "8-8-1997",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f720c",
+    "medicines": [
+      "Montelukast",
+      "Fluticasone"
+    ]
+  },
+  {
+    "name": "علي علي",
+    "username": "ali.ali@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567809",
+    "gender": "Male",
+    "dateOfBirth": "9-9-1998",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f720d",
+    "medicines": [
+      "Metronidazole",
+      "Clindamycin"
+    ]
+  },
+  {
+    "name": "حسن عبدالرحمن",
+    "username": "hassan.abdulrahman@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567810",
+    "gender": "Male",
+    "dateOfBirth": "10-10-1999",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f720e",
+    "medicines": [
+      "Clopidogrel",
+      "Rivaroxaban"
+    ]
+  },
+  {
+    "name": "نوران محمود",
+    "username": "nouran.mahmoud@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567811",
+    "gender": "Female",
+    "dateOfBirth": "11-11-2000",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f720f",
+    "medicines": [
+      "Gabapentin",
+      "Pregabalin"
+    ]
+  },
+  {
+    "name": "عبدالله حسين",
+    "username": "abdullah.hussein@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567812",
+    "gender": "Male",
+    "dateOfBirth": "12-12-2001",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7210",
+    "medicines": [
+      "Hydrochlorothiazide",
+      "Losartan"
+    ]
+  },
+  {
+    "name": "فاطمة علي",
+    "username": "fatimah.ali@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567813",
+    "gender": "Female",
+    "dateOfBirth": "13-1-2002",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7211",
+    "medicines": [
+      "Atorvastatin",
+      "Rosuvastatin"
+    ]
+  },
+  {
+    "name": "علياء عبدالله",
+    "username": "aliyah.abdullah@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567814",
+    "gender": "Female",
+    "dateOfBirth": "14-2-2003",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7212",
+    "medicines": [
+      "Escitalopram",
+      "Sertraline"
+    ]
+  },
+  {
+    "name": "سلمان محمد",
+    "username": "salman.mohammad@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567815",
+    "gender": "Male",
+    "dateOfBirth": "15-3-2004",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7213",
+    "medicines": [
+      "Metformin",
+      "Gliclazide"
+    ]
+  },
+  {
+    "name": "زينب علي",
+    "username": "zainab.ali@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567816",
+    "gender": "Female",
+    "dateOfBirth": "16-4-2005",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7214",
+    "medicines": [
+      "Levothyroxine",
+      "Methimazole"
+    ]
+  },
+  {
+    "name": "محمد عبدالرحمن",
+    "username": "mohammad.abdulrahman2@example.com",
+    "password": "Password1",
+    "contactInfo": "+1234567817",
+    "gender": "Male",
+    "dateOfBirth": "17-5-2006",
+    "role": "Patient",
+    "clinic": "66707ba03eba6e9c700f7215",
+    "medicines": [
+      "Allopurinol",
+      "Colchicine"
+    ]
+  }
+]

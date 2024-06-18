@@ -59,6 +59,30 @@ const routes = [
     action: adminController.getDoctorPatient,
     authAction: "Admin",
   },
+  {
+    path: "/download-excel-pharmacy",
+    method: "get",
+    action: adminController.downloadPharmacyExcel,
+    authAction: "Admin",
+  },
+  {
+    path: "/downloadClinicPatientsExcel",
+    method: "get",
+    action: adminController.downloadClinicPatientsExcel,
+    authAction: "Admin",
+  },
+  {
+    path: "/generateClinicPatientsExcel",
+    method: "get",
+    action: adminController.generateClinicPatientsExcel,
+    authAction: "Admin",
+  },
+  {
+    path: "/generatePatientDemographicsReport",
+    method: "get",
+    action: adminController.generatePatientDemographicsReport,
+    authAction: "Admin",
+  },
 ];
 
 // Register Routes

@@ -1,17 +1,11 @@
-// Import required modules
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const path = require("path");
-
+const bcrypt = require("bcryptjs");
 const generateMRN = require("./../utils/generateMRN");
 const PatientUser = require("./../models/PatientModel");
-const ReceptionistUser = require("./../models/ReceptionistModel");
-const DoctorUser = require("./../models/DoctorModel");
-const AdminUser = require("./../models/AdminModel");
 
-// Load environment variables from config.env
 dotenv.config({ path: "./../config.env" });
 
 const DB = process.env.DATABASE.replace(
@@ -26,14 +20,21 @@ mongoose
   })
   .catch();
 
-// Function to import data from a JSON file
 const importData = async (filePath, Model) => {
   try {
     // Read JSON data from file
     const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
+    // Generate MRNs and passwords for each patient
+    const patients = jsonData.map((patient) => ({
+      ...patient,
+      MRN: generateMRN().toString(), // Generate MRN as a string
+      password: "GeneratedPassword", // Replace with your password generation logic
+      passwordConfirm: "GeneratedPassword", // Ensure passwordConfirm matches password
+    }));
+
     // Insert data into MongoDB
-    await Model.create(jsonData);
+    await Model.create(patients);
 
     console.log(`Data imported from ${path.basename(filePath)} successfully`);
   } catch (error) {
@@ -44,16 +45,5 @@ const importData = async (filePath, Model) => {
   }
 };
 
-// Import data from JSON files
-const importAllData = async () => {
-  await importData("PatientsData.json", PatientUser);
-  await importData("ReceptionistsData.json", ReceptionistUser);
-  await importData("DoctorsData.json", DoctorUser);
-  await importData("AdminsData.json", AdminUser);
-
-  // Close the database connection after importing all data
-  mongoose.connection.close();
-};
-
-// Call the function to import all data
-importAllData();
+// Call the function to import data
+importData("PatientsData.json", PatientUser);

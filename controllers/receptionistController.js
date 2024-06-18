@@ -39,6 +39,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
       username: req.body.username,
     }),
   };
+
   if (
     searchUser.inAdminCollection ||
     searchUser.inDoctorCollection ||
@@ -51,7 +52,11 @@ exports.createUser = catchAsync(async (req, res, next) => {
     });
   } else {
     let newUser = undefined;
-
+    // Function to get a random clinic ID
+    function getRandomClinicId() {
+      const randomIndex = Math.floor(Math.random() * clinics.length);
+      return clinics[randomIndex]._id;
+    }
     if (req.body.role === "Patient") {
       newUser = await PatientUser.create({
         name: req.body.name,
@@ -63,6 +68,8 @@ exports.createUser = catchAsync(async (req, res, next) => {
         dateOfBirth: req.body.dateOfBirth,
         role: req.body.role,
         patientDoctors: req.body.patientDoctors,
+        clinic: new mongoose.Types.ObjectId(getRandomClinicId()), // Assign random clinic ID
+        medicines: req.body.medicines,
         MRN: generateMRN(),
         // photo: req.file.filename, // Save the filename in the photo field
       });

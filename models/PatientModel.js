@@ -5,6 +5,7 @@ const moment = require("moment");
 
 const { randomBytes } = require("crypto");
 const DoctorUser = require("./DoctorModel");
+const Clinic = require("./ClinicModel"); // Import the Clinic model
 
 // Define base User schema with discriminator key as an enum
 const patientSchema = new mongoose.Schema({
@@ -25,17 +26,17 @@ const patientSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  passwordConfirm: {
-    type: String,
-    required: [true, "Please confirm your password!"],
-    validate: {
-      //This only works on CREATE and SAVE!!!
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: "Passwords are not the same!",
-    },
-  },
+  // passwordConfirm: {
+  //   type: String,
+  //   required: [true, "Please confirm your password!"],
+  //   validate: {
+  //     // This only works on CREATE and SAVE!!!
+  //     validator: function (el) {
+  //       return el === this.password;
+  //     },
+  //     message: "Passwords are not the same!",
+  //   },
+  // },
   contactInfo: {
     type: String,
     required: [true, "Please provide the contact information!"],
@@ -53,12 +54,12 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide your role in the system!"],
     enum: ["Patient"],
-    default: "Patient", //it is the most generated user based on the bussiness in the hospital
+    default: "Patient", // it is the most generated user based on the business in the hospital
   },
   passwordChangedAt: Date,
   photo: { type: String },
 
-  //Patients Fields
+  // Patients Fields
   MRN: {
     type: String,
     unique: [
@@ -69,15 +70,19 @@ const patientSchema = new mongoose.Schema({
   medicines: Array,
   labResults: Array,
   radResults: Array,
+  clinic: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Clinic",
+  },
 });
 
 patientSchema.pre("save", async function (next) {
-  //Only run this functioin if password was actually modified
+  // Only run this function if password was actually modified
   if (!this.isModified("password")) return next();
 
-  //Hash the password with cost of 12
+  // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
-  //Delete the passwordConfirm field
+  // Delete the passwordConfirm field
   this.passwordConfirm = undefined;
   next();
 });
@@ -90,14 +95,11 @@ patientSchema.methods.correctPassword = async function (
 };
 
 patientSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
-  // console.log(this.passwordChangedAt);
-
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(
       this.passwordChangedAt.getTime() / 1000,
       10
     );
-    console.log(this.passwordChangedAt, JWTTimestamp);
     return JWTTimestamp < changedTimestamp;
   }
   return false;
