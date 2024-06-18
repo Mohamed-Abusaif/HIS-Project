@@ -3,7 +3,6 @@ const PatientUser = require("../../models/PatientModel");
 const DoctorUser = require("./../../models/DoctorModel");
 const ReceptionistUser = require("./../../models/ReceptionistModel");
 
-
 const path = require("path");
 const upload = require("./../../utils/multerConfig");
 const mongoose = require("mongoose");
@@ -35,16 +34,58 @@ exports.uploadPatientImages = upload.fields([
 exports.editPatient = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    userObject = {
+
+    // Fetch existing patient data
+    const existingPatient = await PatientUser.findById(userId);
+
+    if (!existingPatient) {
+      return res.status(404).json({
+        status: "fail",
+        message: "User Not Found!",
+      });
+    }
+
+    let userObject = {
       patientDoctors: req.body.patientDoctors,
       medicines: req.body.medicines,
     };
+
+    // Check for new labResults files
     if (req.files && req.files.labResults) {
-      userObject.labResults = req.files.labResults[0].path.replace(/\\/g, "/");
+      if (existingPatient.labResults && existingPatient.labResults.length > 0) {
+        // Delete old labResults files
+        existingPatient.labResults.forEach((filePath) => {
+          fs.unlink(path.resolve(filePath), (err) => {
+            if (err) {
+              console.error("Failed to delete old labResults file:", err);
+            }
+          });
+        });
+      }
+      // Update labResults with new file paths
+      userObject.labResults = req.files.labResults.map((file) =>
+        file.path.replace(/\\/g, "/")
+      );
     }
+
+    // Check for new radResults files
     if (req.files && req.files.radResults) {
-      userObject.radResults = req.files.radResults[0].path.replace(/\\/g, "/");
+      if (existingPatient.radResults && existingPatient.radResults.length > 0) {
+        // Delete old radResults files
+        existingPatient.radResults.forEach((filePath) => {
+          fs.unlink(path.resolve(filePath), (err) => {
+            if (err) {
+              console.error("Failed to delete old radResults file:", err);
+            }
+          });
+        });
+      }
+      // Update radResults with new file paths
+      userObject.radResults = req.files.radResults.map((file) =>
+        file.path.replace(/\\/g, "/")
+      );
     }
+
     const patientUser = await PatientUser.findByIdAndUpdate(
       userId,
       userObject,
@@ -54,18 +95,11 @@ exports.editPatient = async (req, res, next) => {
       }
     );
 
-    if (patientUser) {
-      res.status(200).json({
-        status: "success",
-        message: "Patient Info Updated Successfully",
-        patientUser,
-      });
-    } else {
-      res.status(404).json({
-        status: "fail",
-        message: "User Not Found!",
-      });
-    }
+    res.status(200).json({
+      status: "success",
+      message: "Patient Info Updated Successfully",
+      patientUser,
+    });
   } catch (err) {
     res.status(500).json({
       status: "fail",
@@ -73,7 +107,6 @@ exports.editPatient = async (req, res, next) => {
     });
   }
 };
-
 //Doctor Availability Time Routes
 exports.editDoctorAvailabilityTime = async (req, res, next) => {
   const doctorId = req.params.id;
