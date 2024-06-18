@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const adminController = require("../../controllers/AdminControllers/adminController");
+const reportsController = require("../../controllers/AdminControllers/reportsController");
 const authController = require("../../controllers/authController");
 const authorizeMiddleware = require("../../utils/authorize");
 
@@ -62,25 +63,25 @@ const routes = [
   {
     path: "/download-excel-pharmacy",
     method: "get",
-    action: adminController.downloadPharmacyExcel,
+    action: reportsController.downloadPharmacyExcel,
     authAction: "Admin",
   },
   {
     path: "/downloadClinicPatientsExcel",
     method: "get",
-    action: adminController.downloadClinicPatientsExcel,
+    action: reportsController.downloadClinicPatientsExcel,
     authAction: "Admin",
   },
   {
     path: "/generateClinicPatientsExcel",
     method: "get",
-    action: adminController.generateClinicPatientsExcel,
+    action: reportsController.generateClinicPatientsExcel,
     authAction: "Admin",
   },
   {
     path: "/generatePatientDemographicsReport",
     method: "get",
-    action: adminController.generatePatientDemographicsReport,
+    action: reportsController.generatePatientDemographicsReport,
     authAction: "Admin",
   },
 ];

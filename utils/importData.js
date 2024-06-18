@@ -3,8 +3,8 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
 const bcrypt = require("bcryptjs");
-const generateMRN = require("./../utils/generateMRN");
-const PatientUser = require("./../models/PatientModel");
+const generateMRN = require("./generateMRN");
+const PatientUser = require("../models/PatientModel");
 
 dotenv.config({ path: "./../config.env" });
 
