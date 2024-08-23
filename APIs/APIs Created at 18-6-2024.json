@@ -1,0 +1,1023 @@
+{
+	"info": {
+		"_postman_id": "da13f110-ec3d-4dab-8d8d-5ddb7c218125",
+		"name": "HIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15728588"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Medicines",
+					"item": [
+						{
+							"name": "Get All Medicines",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/medicines/getMedicines",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"medicines",
+										"getMedicines"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Medicine",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Drug 2\",\r\n    \"quantity\": \"20\",\r\n    \"price\": \"60\",\r\n    \"description\": \"Drug For Disease\",\r\n    \"pharmacies\": [\"663f8f3602ab2d1c26c859ac\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}admin/medicines/addMedicine",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"medicines",
+										"addMedicine"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Medicine",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Drug 3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}admin/medicines/editMedicine/663fad2c9e0c6ab0c3a65643",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"medicines",
+										"editMedicine",
+										"663fad2c9e0c6ab0c3a65643"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Medicine",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/medicines/deleteMedicine/663fad2c9e0c6ab0c3a65643",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"medicines",
+										"deleteMedicine",
+										"663fad2c9e0c6ab0c3a65643"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CRUD Doctor",
+					"item": [
+						{
+							"name": "Delete Doctor Availability Time",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":  \"6659f9da210e0a86ab1ca4c9\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}admin/deleteDoctorAvailability/66431aaf3f9f034e5e0f84eb",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"deleteDoctorAvailability",
+										"66431aaf3f9f034e5e0f84eb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Doctor Availability Time",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"doctorAvailabilityTime\": \"الساعة التاسعة\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}admin/editDoctorAvailability/66431aaf3f9f034e5e0f84eb",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"editDoctorAvailability",
+										"66431aaf3f9f034e5e0f84eb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Doctor Availability Time",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"doctorAvailabilityTime\": {\r\n        \"time\": \"5678\",\r\n        \"clinicNumber\": \"5\",\r\n        \"floorInHospital\": \"Fifth Floor\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}admin/addDoctorAvailability/66431aaf3f9f034e5e0f84eb",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"addDoctorAvailability",
+										"66431aaf3f9f034e5e0f84eb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Doctor Patient",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/deleteDoctorPatient/66431aaf3f9f034e5e0f84eb/66431a633fff7641b6693ebb",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"deleteDoctorPatient",
+										"66431aaf3f9f034e5e0f84eb",
+										"66431a633fff7641b6693ebb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Doctor Patient",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/addDoctorPatient/66431aaf3f9f034e5e0f84eb/66431a633fff7641b6693eba",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"addDoctorPatient",
+										"66431aaf3f9f034e5e0f84eb",
+										"66431a633fff7641b6693eba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Doctor Patient",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/getDoctorPatients/66431aaf3f9f034e5e0f84eb",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"getDoctorPatients",
+										"66431aaf3f9f034e5e0f84eb"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reports",
+					"item": [
+						{
+							"name": "Pharmacy Report",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    .tftable tr {background-color:#ffffff;}",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+											"    .tftable tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"",
+											"<table class=\"tftable\" border=\"1\">",
+											"    <tr>",
+											"        <th>ID</th>",
+											"        <th>Sol</th>",
+											"        <th>Camera Name</th>",
+											"        <th>Earth Date</th>",
+											"        <th>Landing Date</th>",
+											"        <th>Launch Date</th>",
+											"        <th>Status</th>",
+											"        <th>Total Photos / Sol</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.photos}}",
+											"        <tr id=row_{{@key}}>",
+											"            <td>{{id}}</td>",
+											"            <td>{{sol}}</td>",
+											"            <td>{{camera.name}}</td>",
+											"            <td>{{img_src}}</td>",
+											"            <td>{{rover.landing_date}}</td>",
+											"            <td>{{rover.launch_date}}</td>",
+											"            <td>{{rover.status}}</td>",
+											"            <td>{{totalPhotosDividedBySol}}</td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"function timeDifference(launchDate, landingDate) {",
+											"    var launch = new Date(launchDate);",
+											"    var landing = new Date(landingDate);",
+											"    var diff = Math.abs(launch - landing);",
+											"    var days = Math.ceil(diff / (1000 * 60 * 60 * 24));",
+											"    return days;",
+											"}",
+											"",
+											"function totalPhotosDividedBySol(totalPhotos, sol) {",
+											"    var result = totalPhotos / sol;",
+											"    return result.toFixed(2);",
+											"}",
+											"",
+											"function constructVisualizerPayload() {",
+											"    var visualizerData = pm.response.json();",
+											"    ",
+											"    visualizerData.photos.forEach(((photo,index)=>{",
+											"        visualizerData.photos[index] = {",
+											"            ...visualizerData.photos[index],",
+											"            totalPhotosDividedBySol:totalPhotosDividedBySol(photo.rover.total_photos, photo.sol)",
+											"        }",
+											"    });",
+											"",
+											"    return {response: visualizerData};",
+											"}",
+											"",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/download-excel-pharmacy",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"download-excel-pharmacy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patients Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/downloadClinicPatientsExcel",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"downloadClinicPatientsExcel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clinics Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/generateClinicPatientsExcel",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"generateClinicPatientsExcel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patient Demographics Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}admin/generatePatientDemographicsReport",
+									"host": [
+										"{{URL}}admin"
+									],
+									"path": [
+										"generatePatientDemographicsReport"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit Doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doctorPatients\": [\"66431a633fff7641b6693ec2\", \"66431a633fff7641b6693ebb\"],\r\n    \"doctorAvailabilityTime\": [{\"time\": \"5678\",\"clinicNumber\": \"5\" , \"floorInHospital\": \"First Floor\"}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}admin/editDoctorPatient/66431aaf3f9f034e5e0f84eb",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"editDoctorPatient",
+								"66431aaf3f9f034e5e0f84eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "medicines",
+									"value": "Panadol",
+									"type": "text"
+								},
+								{
+									"key": "labResults",
+									"type": "file",
+									"src": "/D:/2.Freelancing/Graduation Project HIS/Others/360_F_211045328_HnemU2NVFNwDWnQtDi5JHeHVhMV1jTOr.jpg"
+								},
+								{
+									"key": "radResults",
+									"type": "file",
+									"src": "/D:/2.Freelancing/Graduation Project HIS/Others/skeleton-bg.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}admin/editPatient/66431a633fff7641b6693ebc",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"editPatient",
+								"66431a633fff7641b6693ebc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Removed unused HTML template from the test script",
+									"",
+									"var res = pm.response.json().allUsers;",
+									"var formattedData = [];",
+									"",
+									"for (var userType in res) {",
+									"    if (res.hasOwnProperty(userType)) {",
+									"        res[userType].forEach((user) => {",
+									"            var labResults = user.labResults.length > 0 ? \"Lab Results: \" + user.labResults : \"Lab Results: null\";",
+									"            var radResults = user.radResults.length > 0 ? \"Rad Results: \" + user.radResults : \"Rad Results: null\";",
+									"",
+									"            formattedData.push({",
+									"                userType: userType,",
+									"                _id: user._id,",
+									"                name: user.name,",
+									"                username: user.username,",
+									"                gender: user.gender,",
+									"                dateOfBirth: user.dateOfBirth,",
+									"                role: user.role,",
+									"                labResults: labResults,",
+									"                radResults: radResults",
+									"            });",
+									"        });",
+									"    }",
+									"}",
+									"",
+									"pm.visualizer.set(template, { response: formattedData });",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}admin/getAllUsers",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"getAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Failed Route",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}uploads/skeleton-bg.jpg",
+							"host": [
+								"{{URL}}uploads"
+							],
+							"path": [
+								"skeleton-bg.jpg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Get Patient Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}getPatientData/66431a633fff7641b6693ebc",
+							"host": [
+								"{{URL}}getPatientData"
+							],
+							"path": [
+								"66431a633fff7641b6693ebc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Patient Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}downloadPatientData/66431a633fff7641b6693ebc",
+							"host": [
+								"{{URL}}downloadPatientData"
+							],
+							"path": [
+								"66431a633fff7641b6693ebc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "Get Doctor Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}getDoctorData/66431aaf3f9f034e5e0f84eb",
+							"host": [
+								"{{URL}}getDoctorData"
+							],
+							"path": [
+								"66431aaf3f9f034e5e0f84eb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Receptionist",
+			"item": [
+				{
+					"name": "Create Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"محمود إبراهيم\",\r\n    \"username\": \"mahmoud.ibrahim@example.com\",\r\n    \"password\": \"Password10\",\r\n    \"passwordConfirm\": \"Password10\",\r\n    \"contactInfo\": \"+1876543210\",\r\n    \"gender\": \"Male\",\r\n    \"dateOfBirth\": \"1986-08-12\",\r\n    \"clinic\": \"6670706ac37eb70243e031fa\",\r\n    \"role\": \"Patient\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}createUser",
+							"host": [
+								"{{URL}}createUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}getAllUsers",
+							"host": [
+								"{{URL}}getAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}deleteUser/663255df2097e24a3de7bc7e",
+							"host": [
+								"{{URL}}deleteUser"
+							],
+							"path": [
+								"663255df2097e24a3de7bc7e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactInfo\": \"01022\",\r\n    \"gender\": \"Male\",\r\n    \"dateOfBirth\":\"01-01-0101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}editUserInfo/663255d12097e24a3de7bc74",
+							"host": [
+								"{{URL}}editUserInfo"
+							],
+							"path": [
+								"663255d12097e24a3de7bc74"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test2300@hisbanha.org\",\r\n    \"password\": \"pass1234\",\r\n    \"role\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}login",
+							"host": [
+								"{{URL}}login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Public Get Medicines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}getMedicines",
+					"host": [
+						"{{URL}}getMedicines"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
